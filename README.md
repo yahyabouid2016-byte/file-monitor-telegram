@@ -37,13 +37,13 @@ The system is split across **3 machines**, each with a distinct role:
 
 $$ How It Works — Alert Flow
 
-When a user performs a file operation on `\\SRV2\DATA_SECURE`, the following chain is triggered:
+When a user performs a file operation on `\\SRV2\"TARGET-File"`, the following chain is triggered:
 
 | Step | Component | Action |
 |------|-----------|--------|
 | 1 | **Client** | User creates/deletes/renames a file via SMB |
 | 2 | **Server 1 (DC)** | GPO "Audit Object Access" is active → authorizes audit logging |
-| 3 | **Server 2 (FS)** | SACL on `C:\DATA_SECURE` triggers a Security Event |
+| 3 | **Server 2 (FS)** | SACL on `C:\TARGET-File` triggers a Security Event |
 | 4 | **Server 2 (PowerShell)** | `FileSystemWatcher` intercepts the event in real-time |
 | 5 | **Server 2 (NAT)** | Script sends JSON payload via NAT gateway to the internet |
 | 6 | **n8n (Cloud)** | Webhook receives the JSON data |
@@ -70,11 +70,11 @@ $$$ Phase 1 — Audit Policy on the Domain Controller (Server 1)
 $$$ Phase 2 — Configure the Monitored Share (Server 2)
 
 **Step 1: Create SMB Shared Folder**
-- Path: `C:\DATA_SECURE`
-- Accessible by domain users via `\\SRV2\DATA_SECURE`
+- Path: `C:\TARGET-File
+- Accessible by domain users via `\\SRV2\TARGET-File
 
 **Step 2: Configure SACL (System Access Control List)**
-- Applied to `C:\DATA_SECURE`
+- Applied to `C:\TARGET-File
 - Audited events: **File Creation** and **Deletion** for all users
 - Result: GPO *enables* auditing globally; SACL *designates* the specific target
 
@@ -110,7 +110,7 @@ The script uses `.NET FileSystemWatcher` to **actively subscribe** to filesystem
 ```powershell
 # Core watcher setup
 $watcher = New-Object IO.FileSystemWatcher
-$watcher.Path = "C:\DATA_SECURE"
+$watcher.Path = "C:\TARGET-File
 $watcher.IncludeSubdirectories = $true
 $watcher.EnableRaisingEvents = $true
 
@@ -156,7 +156,7 @@ This guarantees 24/7 monitoring that survives reboots and requires no user sessi
 **Example notification received by admin:**
 ```
 [ALERT] File deleted: Rapport_Confidentiel.docx on SRV2
-Path: C:\DATA_SECURE\Rapport_Confidentiel.docx
+Path: C:\TARGET-File\Rapport_Confidentiel.docx
 Time: 2024-11-15 14:32:07
 Server: SRV2
 ```
