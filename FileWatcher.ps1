@@ -4,7 +4,7 @@
 # sends alerts via n8n webhook to Telegram
 # ============================================
 
-$folder = "C:\DATA_SECURE"
+$folder = "C:\your-TARGET"
 $url = "YOUR_N8N_WEBHOOK_URL"
 
 $fsw = New-Object IO.FileSystemWatcher $folder
@@ -36,5 +36,5 @@ Register-ObjectEvent $fsw -EventName "Deleted" -Action $action
 Register-ObjectEvent $fsw -EventName "Changed" -Action $action
 Register-ObjectEvent $fsw -EventName "Renamed" -Action $action
 
-Write-Host "Monitoring Global en cours sur $folder ..."
+Write-Host "Monitoring Global en cours sur $folder 
 while ($true) { Start-Sleep 1 }
