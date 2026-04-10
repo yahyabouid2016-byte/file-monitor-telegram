@@ -1,0 +1,50 @@
+{
+  "name": "Monitor-Telgram",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "YOUR_WEBHOOK_PATH",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [0, 0],
+      "id": "6b776a2e-9d54-42d4-a57c-e12784c61210",
+      "name": "Webhook",
+      "webhookId": "YOUR_WEBHOOK_ID"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.body.utilisateur }} a supprimé le fichier {{ $json.body.fichier }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [208, 0],
+      "id": "91881151-a274-46e7-8e3c-d9057d5dadb6",
+      "name": "Send a text message",
+      "webhookId": "YOUR_WEBHOOK_ID_2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [{"node": "Send a text message", "type": "main", "index": 0}]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "YOUR_VERSION_ID",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "YOUR_INSTANCE_ID"
+  },
+  "id": "YHtf1XVwoNo4BCkH",
+  "tags": []
+}
