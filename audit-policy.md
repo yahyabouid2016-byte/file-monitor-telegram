@@ -25,7 +25,7 @@ Enable the following:
 - **Audit Handle Manipulation** → Success + Failure
 
 ## Step 4: Configure SACL on the Monitored Folder
-- Right-click `C:\DATA_SECURE` → Properties → Security → Advanced → Auditing
+- Right-click `C:\TARGET → Properties → Security → Advanced → Auditing
 - Add entry: **Everyone** → **Success + Failure**
 - Audited permissions: Create files, Delete, Write Data
 
