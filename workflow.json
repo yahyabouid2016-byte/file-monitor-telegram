@@ -10,7 +10,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [0, 0],
-      "id": "6b776a2e-9d54-42d4-a57c-e12784c61210",
+      "id": "xxxxxxxxxxxxxxxxxxxxxxxxxx",
       "name": "Webhook",
       "webhookId": "YOUR_WEBHOOK_ID"
     },
@@ -22,7 +22,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [208, 0],
-      "id": "91881151-a274-46e7-8e3c-d9057d5dadb6",
+      "id": "9xxxxxxxxxxxxxxxxxx",
       "name": "Send a text message",
       "webhookId": "YOUR_WEBHOOK_ID_2"
     }
@@ -45,6 +45,6 @@
     "templateCredsSetupCompleted": true,
     "instanceId": "YOUR_INSTANCE_ID"
   },
-  "id": "YHtf1XVwoNo4BCkH",
+  "id": "xxxxxxxxxxxxxx",
   "tags": []
 }
