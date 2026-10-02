@@ -1,9 +1,3 @@
-# ============================================
-# FileWatcher.ps1 - Real-Time File Monitor
-# Monitors file events on shared folder and
-# sends alerts via n8n webhook to Telegram
-# ============================================
-
 $folder = "C:\your-TARGET"
 $url = "YOUR_N8N_WEBHOOK_URL"
 
